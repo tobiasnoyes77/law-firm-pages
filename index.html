@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Key Takeaways</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:       #4a7cf6;
+      --accent-dark:  #2f5cd4;
+      --accent-light: #eef2ff;
+      --green:        #15803d;
+      --green-bg:     #dcfce7;
+      --green-border: #86efac;
+      --text-1:       #0f0f1a;
+      --text-2:       #353a54;
+      --text-3:       #606680;
+      --border:       #d4d9e8;
+      --border-light: #e6eaf4;
+      --bg-page:      #e6e9f2;
+      --bg-card:      #ffffff;
+      --bg-input:     #f4f6fc;
+      --radius-card:  14px;
+      --radius-elem:  10px;
+      --shadow-card:  0 2px 14px rgba(15,15,26,0.09), 0 1px 3px rgba(15,15,26,0.05);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-1);
+      min-height: 100vh;
+      padding: 36px 16px 56px;
+      font-size: 19px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 760px; margin: 0 auto; }
+
+    /* ── Header ── */
+    .header {
+      background: var(--bg-card);
+      padding: 36px 40px 32px;
+      border-radius: var(--radius-card);
+      margin-bottom: 24px;
+      position: relative;
+      border: 1.5px solid var(--border-light);
+      border-top: 4px solid var(--accent);
+      box-shadow: var(--shadow-card);
+    }
+
+    .header-eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .header-instruction {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-1);
+      line-height: 1.5;
+      margin-bottom: 14px;
+      max-width: 580px;
+    }
+
+    .header p {
+      color: var(--text-3);
+      font-size: 17.5px;
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    .header strong {
+      color: var(--text-2);
+      font-weight: 600;
+    }
+
+    /* ── Judge tip box ── */
+    .judge-tip {
+      margin-top: 20px;
+      background: #fffbec;
+      border: 1.5px solid #f6d060;
+      border-radius: var(--radius-elem);
+      padding: 13px 18px;
+      font-size: 14px;
+      color: #92400e;
+      line-height: 1.75;
+    }
+
+    .judge-tip strong {
+      font-weight: 700;
+    }
+
+    /* ── Section header ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      margin-top: 28px;
+    }
+
+    .section-label-text {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+
+    .section-divider {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Accordion ── */
+    .accordion-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .accordion-item {
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--bg-card);
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .accordion-item:hover { border-color: #b4c8fc; }
+    .accordion-item.open {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(74,124,246,0.09), var(--shadow-card);
+    }
+
+    .item-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      cursor: pointer;
+      user-select: none;
+      background: #f7f9fc;
+      border: none;
+      width: 100%;
+      text-align: left;
+      transition: background 0.15s;
+    }
+    .item-header:hover { background: #eff3ff; }
+    .accordion-item.open > .item-header {
+      background: var(--accent-light);
+      border-bottom: 1.5px solid #dde8ff;
+    }
+
+    .item-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--text-1);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .accordion-item.open .item-num { background: var(--accent); }
+
+    .item-title-block { flex: 1; }
+    .item-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-1);
+      line-height: 1.35;
+    }
+    .item-preview {
+      font-size: 15.5px;
+      color: var(--text-3);
+      margin-top: 3px;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .accordion-item.open .item-preview { display: none; }
+
+    .item-arrow {
+      color: var(--text-3);
+      transition: transform 0.22s ease;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+    .accordion-item.open .item-arrow { transform: rotate(180deg); }
+
+    /* ── Body ── */
+    .item-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .accordion-item.open .item-body { max-height: 1000px; }
+
+    .item-body-inner { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 16px; }
+
+    /* ── Content blocks ── */
+    .content-block {
+      border-radius: var(--radius-elem);
+      padding: 14px 16px;
+    }
+
+    .block-insight {
+      background: var(--bg-input);
+      border: 1.5px solid var(--border-light);
+    }
+
+    .block-why {
+      background: #f0f9ff;
+      border: 1.5px solid #bae6fd;
+    }
+
+    .block-reflection {
+      background: var(--green-bg);
+      border: 1.5px solid var(--green-border);
+      position: relative;
+      padding-left: 20px;
+    }
+    .block-reflection::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: var(--green);
+      border-radius: var(--radius-elem) 0 0 var(--radius-elem);
+    }
+
+    .block-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .block-insight .block-label  { color: var(--text-3); }
+    .block-why .block-label      { color: #0369a1; }
+    .block-reflection .block-label { color: var(--green); }
+
+    .block-text {
+      font-size: 17.5px;
+      line-height: 1.75;
+      color: var(--text-2);
+    }
+
+    .block-reflection .block-text { color: #166534; }
+
+    /* Sub-bullets inside insight */
+    .insight-bullets {
+      list-style: none;
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .insight-bullets li {
+      display: flex;
+      gap: 8px;
+      font-size: 17.5px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+    .insight-bullets li::before {
+      content: '–';
+      color: var(--text-3);
+      flex-shrink: 0;
+    }
+
+    .quote-mark {
+      font-size: 18px;
+      color: var(--green);
+      font-family: Georgia, serif;
+      line-height: 1;
+      margin-right: 2px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="header-eyebrow">Before You Go to Court</div>
+    <div class="header-instruction">Choose one or two takeaways from the course that felt most relevant to you.</div>
+    <p>Review the reflection language so you're ready if the judge asks, <strong>"What did you learn, and how will that change your behavior?"</strong></p>
+    <p>Don't memorize the language word for word. Use it as a starting point to prepare an answer in your own voice. The judge wants to hear genuine understanding, not a recitation.</p>
+  </div>
+
+  <!-- ── Strong Points ── -->
+  <div class="section-header">
+    <span class="section-label-text">Strong Points</span>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="accordion-list">
+
+    <!-- 1 -->
+    <div class="accordion-item">
+      <button class="item-header" type="button">
+        <div class="item-num">1</div>
+        <div class="item-title-block">
+          <div class="item-title">Speed is a risk multiplier</div>
+          <div class="item-preview">Speed dramatically reduces reaction time, increases braking distance, and raises crash force.</div>
+        </div>
+        <svg class="item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="item-body">
+        <div class="item-body-inner">
+          <div class="content-block block-insight">
+            <div class="block-label">Key Insight</div>
+            <div class="block-text">Speed does not just make a crash "a little worse." It dramatically reduces reaction time, increases braking distance, and raises crash force.</div>
+          </div>
+          <div class="content-block block-why">
+            <div class="block-label">Why It Matters</div>
+            <div class="block-text">At higher speeds, there is less time to notice hazards, less space to avoid them, and less control if something unexpected happens.</div>
+          </div>
+          <div class="content-block block-reflection">
+            <div class="block-label">Reflection Language</div>
+            <div class="block-text"><span class="quote-mark">"</span>I now understand that speeding multiplies risk. It reduces my time to react, increases the distance I need to stop, and makes any crash more severe. I was not just breaking a rule; I was giving myself fewer options in an emergency."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="accordion-item">
+      <button class="item-header" type="button">
+        <div class="item-num">2</div>
+        <div class="item-title-block">
+          <div class="item-title">Speed steals three safety assets</div>
+          <div class="item-preview">Speed takes away the three things a driver needs most: time, space, and stability.</div>
+        </div>
+        <svg class="item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="item-body">
+        <div class="item-body-inner">
+          <div class="content-block block-insight">
+            <div class="block-label">Key Insight</div>
+            <div class="block-text">Speed takes away the three things a driver needs most:</div>
+            <ul class="insight-bullets">
+              <li>Time to react</li>
+              <li>Space to maneuver</li>
+              <li>Stability to maintain control</li>
+            </ul>
+          </div>
+          <div class="content-block block-why">
+            <div class="block-label">Why It Matters</div>
+            <div class="block-text">A safe driver protects these assets. A speeding driver spends them too quickly.</div>
+          </div>
+          <div class="content-block block-reflection">
+            <div class="block-label">Reflection Language</div>
+            <div class="block-text"><span class="quote-mark">"</span>I now see that speeding was stealing from my three most important safety assets: time, space, and stability. By driving too fast, I gave myself less time to respond, less room to adjust, and less vehicle control if something went wrong."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="accordion-item">
+      <button class="item-header" type="button">
+        <div class="item-num">3</div>
+        <div class="item-title-block">
+          <div class="item-title">The Subjective Trap</div>
+          <div class="item-preview">Modern vehicles are quiet and smooth — the body adjusts to speed, so the driver may stop noticing how fast they're moving.</div>
+        </div>
+        <svg class="item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="item-body">
+        <div class="item-body-inner">
+          <div class="content-block block-insight">
+            <div class="block-label">Key Insight</div>
+            <div class="block-text">Speed can feel safer than it really is because modern vehicles are quiet, smooth, and insulated. The body adjusts to steady motion, so the driver may stop noticing how fast they are actually moving.</div>
+          </div>
+          <div class="content-block block-why">
+            <div class="block-label">Why It Matters</div>
+            <div class="block-text">Feeling safe is not the same as being safe.</div>
+          </div>
+          <div class="content-block block-reflection">
+            <div class="block-label">Reflection Language</div>
+            <div class="block-text"><span class="quote-mark">"</span>I learned that I cannot rely only on how speed feels. A car can feel smooth and controlled even when the actual risk is increasing. I need to use my speedometer, road conditions, traffic flow, and posted limits instead of trusting my comfort level."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="accordion-item">
+      <button class="item-header" type="button">
+        <div class="item-num">4</div>
+        <div class="item-title-block">
+          <div class="item-title">Speeding is often emotional, not logical</div>
+          <div class="item-preview">Many people speed to satisfy an emotional need: control, urgency, power, or relief from stress.</div>
+        </div>
+        <svg class="item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="item-body">
+        <div class="item-body-inner">
+          <div class="content-block block-insight">
+            <div class="block-label">Key Insight</div>
+            <div class="block-text">Many people speed because they are trying to satisfy an emotional need: control, urgency, power, competence, escape, or relief from stress.</div>
+          </div>
+          <div class="content-block block-why">
+            <div class="block-label">Why It Matters</div>
+            <div class="block-text">If the real cause is emotional, the solution must include emotional awareness.</div>
+          </div>
+          <div class="content-block block-reflection">
+            <div class="block-label">Reflection Language</div>
+            <div class="block-text"><span class="quote-mark">"</span>I recognize that my speeding was not always a rational choice. Sometimes I was reacting to being late, stressed, impatient, or wanting to feel in control. I was using speed to solve an emotional problem, but the road is not a safe place to satisfy that feeling."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="accordion-item">
+      <button class="item-header" type="button">
+        <div class="item-num">5</div>
+        <div class="item-title-block">
+          <div class="item-title">Being late is an internal hazard</div>
+          <div class="item-preview">Being late can make safety rules feel negotiable — and cause drivers to justify unsafe choices.</div>
+        </div>
+        <svg class="item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="item-body">
+        <div class="item-body-inner">
+          <div class="content-block block-insight">
+            <div class="block-label">Key Insight</div>
+            <div class="block-text">Being late can make safety rules feel negotiable.</div>
+          </div>
+          <div class="content-block block-why">
+            <div class="block-label">Why It Matters</div>
+            <div class="block-text">A late driver may start justifying unsafe choices: speeding, tailgating, rolling stops, weaving, or taking risky gaps.</div>
+          </div>
+          <div class="content-block block-reflection">
+            <div class="block-label">Reflection Language</div>
+            <div class="block-text"><span class="quote-mark">"</span>I now understand that being late is not an excuse; it is a warning sign. If I am late, I need to treat that as an internal hazard and drive even more deliberately, not more aggressively."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 Move Over -->
+    <div class="accordion-item">
+      <button class="item-header" type="button">
+        <div class="item-num">6</div>
+        <div class="item-title-block">
+          <div class="item-title">Failing to move over is not a minor infraction</div>
+          <div class="item-preview">Failing to move over removes the safety buffer first responders need when working near fast-moving traffic.</div>
+        </div>
+        <svg class="item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="item-body">
+        <div class="item-body-inner">
+          <div class="content-block block-insight">
+            <div class="block-label">Key Insight</div>
+            <div class="block-text">Failing to move over is not just a lane mistake. It removes the safety buffer first responders need when working near fast-moving traffic.</div>
+          </div>
+          <div class="content-block block-why">
+            <div class="block-label">Why It Matters</div>
+            <div class="block-text">Virginia's Move Over Law requires drivers to move over for stopped emergency vehicles with flashing lights when safe, or slow down and pass carefully if moving over is not possible.<br><br>This protects officers and responders who may be standing only feet from traffic. Not moving over reduces their safety space and gives the driver less time to react.</div>
+          </div>
+          <div class="content-block block-reflection">
+            <div class="block-label">Reflection Language</div>
+            <div class="block-text"><span class="quote-mark">"</span>I now understand that failing to move over put a first responder at risk. I was not just breaking a rule; I was taking away the space and safety they needed to do their job. Going forward, when I see flashing lights ahead, I will check my mirrors, signal early, move one lane away if it is safe, and if I cannot move over, reduce my speed and pass with extra caution."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end strong points -->
+
+  <!-- ── Behavior Change Tools ── -->
+  <div class="section-header">
+    <span class="section-label-text">Behavior Change Tools</span>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="accordion-list">
+
+    <!-- 1 RUA -->
+    <div class="accordion-item">
+      <button class="item-header" type="button">
+        <div class="item-num">1</div>
+        <div class="item-title-block">
+          <div class="item-title">The RUA Framework</div>
+          <div class="item-preview">Recognize the trigger · Understand what it does to your judgment · Act with a safer choice.</div>
+        </div>
+        <svg class="item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="item-body">
+        <div class="item-body-inner">
+          <div class="content-block block-insight">
+            <div class="block-label">What It Is</div>
+            <ul class="insight-bullets">
+              <li><strong>R</strong>ecognize the trigger</li>
+              <li><strong>U</strong>nderstand what it is doing to your judgment</li>
+              <li><strong>A</strong>ct with a safer driving choice</li>
+            </ul>
+            <div class="block-text" style="margin-top: 10px; font-style: italic; color: var(--text-3); font-size: 13.5px;">Example: "I notice I am late." → "I understand this makes me want to treat the speed limit as optional." → "I act by accepting the delay, staying within the limit, and protecting my following distance."</div>
+          </div>
+          <div class="content-block block-reflection">
+            <div class="block-label">Reflection Language</div>
+            <div class="block-text"><span class="quote-mark">"</span>To prevent this from happening again, I will use the RUA Framework: Recognize, Understand, Act. I will recognize the urge to speed, understand the emotion or pressure behind it, and act by choosing a safer behavior instead of reacting automatically."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 HALT -->
+    <div class="accordion-item">
+      <button class="item-header" type="button">
+        <div class="item-num">2</div>
+        <div class="item-title-block">
+          <div class="item-title">Pre-Drive HALT Audit</div>
+          <div class="item-preview">Before driving, check: am I Hungry, Angry, Late, or Tired?</div>
+        </div>
+        <svg class="item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="item-body">
+        <div class="item-body-inner">
+          <div class="content-block block-insight">
+            <div class="block-label">What It Is</div>
+            <div class="block-text">Before driving, check whether you are:</div>
+            <ul class="insight-bullets">
+              <li><strong>H</strong>ungry</li>
+              <li><strong>A</strong>ngry</li>
+              <li><strong>L</strong>ate</li>
+              <li><strong>T</strong>ired</li>
+            </ul>
+          </div>
+          <div class="content-block block-why">
+            <div class="block-label">Why It Matters</div>
+            <div class="block-text">These states make drivers more reactive and less patient.</div>
+          </div>
+          <div class="content-block block-reflection">
+            <div class="block-label">Reflection Language</div>
+            <div class="block-text"><span class="quote-mark">"</span>Before I drive, I will do a HALT audit. If I am hungry, angry, late, or tired, I will recognize that I am starting the drive with a higher risk level and will slow down, create extra space, and avoid aggressive decisions."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Lane Lock -->
+    <div class="accordion-item">
+      <button class="item-header" type="button">
+        <div class="item-num">3</div>
+        <div class="item-title-block">
+          <div class="item-title">Lane Lock</div>
+          <div class="item-preview">Choose a lane and commit to it instead of constantly chasing the "fastest" lane.</div>
+        </div>
+        <svg class="item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="item-body">
+        <div class="item-body-inner">
+          <div class="content-block block-insight">
+            <div class="block-label">What It Is</div>
+            <div class="block-text">Choose a lane and commit to it instead of constantly chasing the "fastest" lane.</div>
+          </div>
+          <div class="content-block block-why">
+            <div class="block-label">Why It Matters</div>
+            <div class="block-text">Lane-hopping often feels productive, but it usually increases risk, stress, and aggression.</div>
+          </div>
+          <div class="content-block block-reflection">
+            <div class="block-label">Reflection Language</div>
+            <div class="block-text"><span class="quote-mark">"</span>When I feel the urge to weave through traffic, I will use Lane Lock. I will choose a safe lane and stay committed to it instead of chasing small advantages that increase risk."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 3-Second Buffer -->
+    <div class="accordion-item">
+      <button class="item-header" type="button">
+        <div class="item-num">4</div>
+        <div class="item-title-block">
+          <div class="item-title">Maintain a 3-second buffer</div>
+          <div class="item-preview">Stay at least three seconds behind the vehicle in front of you to protect reaction time and space.</div>
+        </div>
+        <svg class="item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="item-body">
+        <div class="item-body-inner">
+          <div class="content-block block-insight">
+            <div class="block-label">What It Is</div>
+            <div class="block-text">Stay at least three seconds behind the vehicle in front of you.</div>
+          </div>
+          <div class="content-block block-why">
+            <div class="block-label">Why It Matters</div>
+            <div class="block-text">This protects reaction time and space — the same two safety assets that speeding takes away.</div>
+          </div>
+          <div class="content-block block-reflection">
+            <div class="block-label">Reflection Language</div>
+            <div class="block-text"><span class="quote-mark">"</span>I will maintain a three-second following distance so I have enough time and space to respond safely. This gives me a practical way to protect the safety margin that speeding takes away."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 Hanlon's Razor -->
+    <div class="accordion-item">
+      <button class="item-header" type="button">
+        <div class="item-num">5</div>
+        <div class="item-title-block">
+          <div class="item-title">Use Hanlon's Razor</div>
+          <div class="item-preview">Don't assume other drivers are attacking you. Assume they may simply be distracted or making a mistake.</div>
+        </div>
+        <svg class="item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="item-body">
+        <div class="item-body-inner">
+          <div class="content-block block-insight">
+            <div class="block-label">What It Is</div>
+            <div class="block-text">Do not assume other drivers are attacking, disrespecting, or challenging you. Assume they may simply be distracted, confused, or making a mistake.</div>
+          </div>
+          <div class="content-block block-why">
+            <div class="block-label">Why It Matters</div>
+            <div class="block-text">This prevents emotional escalation — the kind of reaction that can turn a frustrating moment into an aggressive one.</div>
+          </div>
+          <div class="content-block block-reflection">
+            <div class="block-label">Reflection Language</div>
+            <div class="block-text"><span class="quote-mark">"</span>I will use Hanlon's Razor when another driver frustrates me. Instead of assuming they are being malicious, I will assume they may simply be making a mistake. That helps me avoid the emotional reaction that can lead to aggressive speeding."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 Boring Driver -->
+    <div class="accordion-item">
+      <button class="item-header" type="button">
+        <div class="item-num">6</div>
+        <div class="item-title-block">
+          <div class="item-title">Aim to be a "boring" driver</div>
+          <div class="item-preview">The best drivers are predictable, calm, and stable — they avoid creating emergencies rather than reacting to them.</div>
+        </div>
+        <svg class="item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="item-body">
+        <div class="item-body-inner">
+          <div class="content-block block-insight">
+            <div class="block-label">Key Insight</div>
+            <div class="block-text">The best drivers are predictable, calm, and stable. They do not need heroic reflexes because they avoid creating emergencies.</div>
+          </div>
+          <div class="content-block block-why">
+            <div class="block-label">Why It Matters</div>
+            <div class="block-text">Predictability is safer than performance. Safe driving is not about fast reflexes — it is about avoiding the situations where those reflexes are needed.</div>
+          </div>
+          <div class="content-block block-reflection">
+            <div class="block-label">Reflection Language</div>
+            <div class="block-text"><span class="quote-mark">"</span>My goal is to become a boring, predictable driver. I now understand that safe driving is not about fast reflexes or confidence; it is about avoiding situations where those reflexes are needed."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 Choice Theory -->
+    <div class="accordion-item">
+      <button class="item-header" type="button">
+        <div class="item-num">7</div>
+        <div class="item-title-block">
+          <div class="item-title">Choice theory affects driving</div>
+          <div class="item-preview">Every action behind the wheel is still a decision, even when it feels automatic.</div>
+        </div>
+        <svg class="item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="item-body">
+        <div class="item-body-inner">
+          <div class="content-block block-insight">
+            <div class="block-label">Key Insight</div>
+            <div class="block-text">Choice theory affects driving because every action behind the wheel is still a decision, even when it feels automatic. Unsafe driving often happens when a driver chooses convenience, speed, control, or frustration over safety.</div>
+          </div>
+          <div class="content-block block-why">
+            <div class="block-label">Why It Matters</div>
+            <div class="block-text">Driving decisions are influenced by needs such as freedom, control, power, and belonging. A driver may speed because they want freedom from delay, refuse to yield because they want control, or follow traffic too closely because they want to keep up with the flow.<br><br>Recognizing these motives matters because safe driving requires choosing responsibility over impulse.</div>
+          </div>
+          <div class="content-block block-reflection">
+            <div class="block-label">Reflection Language</div>
+            <div class="block-text"><span class="quote-mark">"</span>I now understand that choice theory helps explain some of my driving decisions. At times, I may choose speed, control, or convenience because I feel delayed, frustrated, or entitled to keep moving. Being able to name choice theory helps me recognize those motives earlier, before they turn into unsafe actions. Going forward, I will identify when impatience or control is influencing me and choose the safer response instead."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end behavior tools -->
+
+</div><!-- end container -->
+
+<script>
+  document.querySelectorAll('.item-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.closest('.accordion-item');
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.accordion-item.open').forEach(i => i.classList.remove('open'));
+
+      // Toggle clicked
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
